@@ -214,7 +214,9 @@ li{
 .navbar .search-container button:hover {
   background: #ccc;
 }
-
+.navbar-header .icon-bar{
+	background-color: white;
+}
 @media screen and (max-width: 600px) {
   .navbar .search-container {
     float: none;
