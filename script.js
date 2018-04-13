@@ -470,17 +470,17 @@ var drawChart4 = function(withData) { //Most Common Times
 }
 
 
-// Get the modal
-var modal = document.getElementById('id01');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
+function validate(){
+var email = document.getElementById("txtEmail").value;
+var password = document.getElementById("txtPassword").value;
+var dashToHide = document.getElementById("toHide");
+if ( email == "admin@gmail.com" && password == "admin696"){
+alert ("Login successfully");
+dashToHide.style.display = "block";
+return false;
 }
-
-
-function logIn(){
+else{
+  dashToHide.style.display = "none";
+}
 
 }
