@@ -12,37 +12,32 @@ auth.signInWithEmailAndPassword(email, pass);
 auth.onAuthStateChanged(firebaseUser => {});
 */
 
-// const txtEmail = document.getElementById("txtEmail");
-// const txtPassword = document.getElementById("txtPassword");
-// const btnLogin = document.getElementById("btnLogin");
-// const btnLogout = document.getElementById("btnLogout");
+const txtEmail = document.getElementById("txtEmail");
+const txtPassword = document.getElementById("txtPassword");
+const btnLogin = document.getElementById("btnLogin");
+const btnLogout = document.getElementById("btnLogout");
 
-// btnLogin.addEventListener('click', e => {
-// const email = txtEmail.value;
-// const password = txtPassword.value;
-// const auth = firebase.auth();
+btnLogin.addEventListener('click', e => {
+const email = txtEmail.value;
+const password = txtPassword.value;
+const auth = firebase.auth();
 
-// //signin
-// const promise = auth.signInWithEmailAndPassword(email, password);
-// promise.catch(e => console.log(e.message));
+//signin
+const promise = auth.signInWithEmailAndPassword(email, password);
+promise.catch(e => console.log(e.message));
 
-// });
+});
 
-// firebase.auth().onAuthStateChanged(firebaseUser => 
-//   {
-//     if(firebaseUser){
-//       console.log(firebaseUser);
-//     }
-//     else{
-//       console.log("user not logged in");
-//     }
-// });
+firebase.auth().onAuthStateChanged(firebaseUser => 
+  {
+    if(firebaseUser){
+      console.log(firebaseUser);
+    }
+    else{
+      console.log("user not logged in");
+    }
+});
 
-function login(){
-  var txtEmail = document.getElementById("txtEmail").value;
-var txtPassword = document.getElementById("txtPassword").value;
- window.alert(txtEmail + " "+ txtPassword);
-}
 
 var dbRef = firebase.database().ref().child("offenders"); //get reference to Firebase db table offenders
 dbRef.on("child_added", snap => {
