@@ -15,6 +15,7 @@ auth.onAuthStateChanged(firebaseUser => {});
 var txtEmail = document.getElementById("txtEmail");
 var txtPassword = document.getElementById("txtPassword");
 var btnLogin = document.getElementById("btnLogin");
+var btnSignUp = document.getElementById("btnSignUp");
 var btnLogout = document.getElementById("btnLogout");
 
 btnLogin.addEventListener("click", e => {
@@ -28,10 +29,21 @@ promise.catch(e => console.log(e.message));
 
 });
 
+btnSignUp.addEventListener("click", e => {
+  var email = txtEmail.value;
+  var password = txtPassword.value;
+  var auth = firebase.auth();
+  
+  //signup
+  var promise = auth.createUserWithEmailAndPassword(email, password);
+  promise.catch(e => console.log(e.message));
+  
+  });
+
 firebase.auth().onAuthStateChanged(firebaseUser => 
   {
     if(firebaseUser){
-     window.alert("HEYYYYYYY");
+     console.log("HEYYYYYYY");
     }
     else{
       console.log("user not logged in");
