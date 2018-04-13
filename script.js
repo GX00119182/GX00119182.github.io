@@ -468,3 +468,19 @@ var drawChart4 = function(withData) { //Most Common Times
   var chart = new google.visualization.PieChart(document.getElementById('gridItem2'));
   chart.draw(data, options);
 }
+
+
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+
+function logIn(){
+
+}
