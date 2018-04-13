@@ -12,6 +12,7 @@ auth.signInWithEmailAndPassword(email, pass);
 auth.onAuthStateChanged(firebaseUser => {});
 */
 
+/*
 var txtEmail = document.getElementById("txtEmail");
 var txtPassword = document.getElementById("txtPassword");
 var btnLogin = document.getElementById("btnLogin");
@@ -49,7 +50,7 @@ firebase.auth().onAuthStateChanged(firebaseUser =>
       console.log("user not logged in");
     }
 });
-
+*/
 
 var dbRef = firebase.database().ref().child("offenders"); //get reference to Firebase db table offenders
 dbRef.on("child_added", snap => {
