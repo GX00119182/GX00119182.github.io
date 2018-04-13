@@ -17,7 +17,7 @@ const txtPassword = document.getElementById("txtPassword");
 const btnLogin = document.getElementById("btnLogin");
 const btnLogout = document.getElementById("btnLogout");
 
-btnLogin.addEventListener('click', e => {
+btnLogin.addEventListener("click", e => {
 const email = txtEmail.value;
 const password = txtPassword.value;
 const auth = firebase.auth();
