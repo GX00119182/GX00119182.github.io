@@ -18,7 +18,7 @@ var btnLogin = document.getElementById("btnLogin");
 var btnSignUp = document.getElementById("btnSignUp");
 var btnLogout = document.getElementById("btnLogout");
 
-btnLogin.addEventListener("click", e => {
+btnLogin.addEventListener('click', e => {
 var email = txtEmail.value;
 var password = txtPassword.value;
 var auth = firebase.auth();
@@ -29,7 +29,7 @@ promise.catch(e => console.log(e.message));
 
 });
 
-btnSignUp.addEventListener("click", e => {
+btnSignUp.addEventListener('click', e => {
   var email = txtEmail.value;
   var password = txtPassword.value;
   var auth = firebase.auth();
