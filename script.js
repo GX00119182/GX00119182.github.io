@@ -4,53 +4,6 @@
  */
 var totalNumber = 0; //total number of records in db
 var tempStopCount = 0;
-/*
-const auth = firebase.auth();
-
-auth.signInWithEmailAndPassword(email, pass);
-
-auth.onAuthStateChanged(firebaseUser => {});
-*/
-
-/*
-var txtEmail = document.getElementById("txtEmail");
-var txtPassword = document.getElementById("txtPassword");
-var btnLogin = document.getElementById("btnLogin");
-var btnSignUp = document.getElementById("btnSignUp");
-var btnLogout = document.getElementById("btnLogout");
-
-btnLogin.addEventListener('click', e => {
-var email = txtEmail.value;
-var password = txtPassword.value;
-var auth = firebase.auth();
-
-//signin
-var promise = auth.signInWithEmailAndPassword(email, password);
-promise.catch(e => console.log(e.message));
-
-});
-
-btnSignUp.addEventListener('click', e => {
-  var email = txtEmail.value;
-  var password = txtPassword.value;
-  var auth = firebase.auth();
-  
-  //signup
-  var promise = auth.createUserWithEmailAndPassword(email, password);
-  promise.catch(e => console.log(e.message));
-  
-  });
-
-firebase.auth().onAuthStateChanged(firebaseUser => 
-  {
-    if(firebaseUser){
-     console.log("HEYYYYYYY");
-    }
-    else{
-      console.log("user not logged in");
-    }
-});
-*/
 
 var dbRef = firebase.database().ref().child("offenders"); //get reference to Firebase db table offenders
 dbRef.on("child_added", snap => {
