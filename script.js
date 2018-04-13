@@ -1,6 +1,7 @@
 /* 
 *Name: Gavin O'Keeffe
 *X-Number: X00119182.
+*4th Year Project
  */
 var totalNumber = 0; //total number of records in db
 var tempStopCount = 0;
@@ -80,10 +81,10 @@ var countRef = dbRef.orderByChild("stopName").on("value", function (data) {
 
 //Get Percentage
 function CalcPercentagePerStop() {
-  var StopIn = document.getElementById("myInput").value;
-  var counter1 = 0;
-  var percentageOfStops = 0;
-  var percentageRef = dbRef.orderByChild("stopName").equalTo(StopIn).on("value", function (data) {
+  var StopIn = document.getElementById("myInput").value;//Get value of input box
+  var counter1 = 0; //counter of num times stopIn is in db
+  var percentageOfStops = 0; //declare variable for getting percentage
+  var percentageRef = dbRef.orderByChild("stopName").equalTo(StopIn).on("value", function (data) { //Query to get All stops equal to StopIn
 
     data.forEach(function (data) {
       counter1++;
@@ -91,7 +92,7 @@ function CalcPercentagePerStop() {
     });
 
     var percentageOfStops = counter1 / totalNumber * 100; // algorithm for percentages of each stop
-    if (percentageOfStops == 0) {
+    if (percentageOfStops == 0) { //if invalid text
       document.getElementById("k").style.color = "red";
       document.getElementById("k").innerHTML = "Please select another stop";
     }
@@ -102,63 +103,6 @@ function CalcPercentagePerStop() {
 
   });
 }
-
-
-//select stop dropdown start.
-//working counter of stops**************
-
-function stopFinder() {
-  var stopIn = document.getElementById("select").val();
-  if(stopIn == "All"){
-    return;
-  }
-  else{
-    var stopRef = dbRef.orderByChild("stopName").equalTo(stopIn).on("value", function (data) {
-
-      data.forEach(function (data) {
-        if(data.child("stopIn").val() =="Kylemore")
-        { //if stop value = Kylemore
-          $("#table_body").append("<tr><td>" + fname + "</td><td>" + lname + "</td><td>" + dob + "</td><td>"
-          + email + "</td><td>" + address + "</td><td>" + phoneNo + "</td><td>" 
-          + stopName + "</td><td>" + hours + "</td><td>" + stringDay + "</td></tr>");
-        }
-        else if(data.child("stopIn").val() == "Jervis")
-        {
-          $("#table_body").append("<tr><td>" + fname + "</td><td>" + lname + "</td><td>" + dob + "</td><td>"
-          + email + "</td><td>" + address + "</td><td>" + phoneNo + "</td><td>" 
-          + stopName + "</td><td>" + hours + "</td><td>" + stringDay + "</td></tr>");
-        }
-        else if(data.child("stopIn").val() =="Georges Dock")
-        {
-          $("#table_body").append("<tr><td>" + fname + "</td><td>" + lname + "</td><td>" + dob + "</td><td>"
-          + email + "</td><td>" + address + "</td><td>" + phoneNo + "</td><td>" 
-          + stopName + "</td><td>" + hours + "</td><td>" + stringDay + "</td></tr>");
-        }
-        else if(data.child("stopIn").val() =="Red Cow")
-        {
-          $("#table_body").append("<tr><td>" + fname + "</td><td>" + lname + "</td><td>" + dob + "</td><td>"
-          + email + "</td><td>" + address + "</td><td>" + phoneNo + "</td><td>" 
-          + stopName + "</td><td>" + hours + "</td><td>" + stringDay + "</td></tr>");
-        }
-        else if(data.child("stopIn").val() =="Museum")
-        {
-          $("#table_body").append("<tr><td>" + fname + "</td><td>" + lname + "</td><td>" + dob + "</td><td>"
-    + email + "</td><td>" + address + "</td><td>" + phoneNo + "</td><td>" 
-    + stopName + "</td><td>" + hours + "</td><td>" + stringDay + "</td></tr>");
-        }
-       else if(data.child("stopIn").val() =="Drimnagh")
-       {
-        $("#table_body").append("<tr><td>" + fname + "</td><td>" + lname + "</td><td>" + dob + "</td><td>"
-        + email + "</td><td>" + address + "</td><td>" + phoneNo + "</td><td>" 
-        + stopName + "</td><td>" + hours + "</td><td>" + stringDay + "</td></tr>");
-        }
-      });
-  
-    });
-  }
- 
-}
-//select stop dropdown end.
 
 function graphDataStops() //Prepare Data to calc graph for count of offenders at each stop
 {
@@ -176,7 +120,7 @@ function graphDataStops() //Prepare Data to calc graph for count of offenders at
 
     data.forEach(function (data) { //for each data value
 
-      if(data.child("stopName").val() =="Kylemore"){ //if stop value = Kylemore
+      if(data.child("stopName").val() =="Kylemore"){ //if stop value == Kylemore
         counterArray[1][1] += 1;
       }
       else if(data.child("stopName").val() == "Jervis"){
@@ -219,12 +163,8 @@ google.charts.load('current', {'packages':['corechart']});
         chart.draw(data, options);
       }
       
-      function graphDataDays()
+      function graphDataDays() //function to prep days data for visualisation
       {
-        /* var timeIn = snap.child("time").val();
-            time = new Date(timeIn);
-            var hours = time.getUTCHours();
-            var day = time.getDay();*/
         var dayCounterArray = [
           ["Day", "Count"],
           ["Monday", 0],
@@ -236,13 +176,13 @@ google.charts.load('current', {'packages':['corechart']});
           ["Sunday", 0]
         ];
        
-        var graphRef = dbRef.orderByChild("time").on("value", function (data) {
+        var graphRef = dbRef.orderByChild("time").on("value", function (data) { //firebase query on 'time' node
       
           data.forEach(function (data) { //for each data value
              var timeIn = data.child("time").val();
             time = new Date(timeIn);
             var hours = time.getUTCHours();
-            var day = time.getDay();
+            var day = time.getDay(); //turn date into a specific day of week
             if(day == 1){
               dayCounterArray[1][1] += 1;
             }
@@ -315,13 +255,13 @@ function MostCommonTime()
     ["1am", 0]
   ];
  
-  var graphRef = dbRef.orderByChild("time").on("value", function (data) {
+  var graphRef = dbRef.orderByChild("time").on("value", function (data) { //firebase query on 'time' node
 
     data.forEach(function (data) { //for each data value
 
        var timeIn = data.child("time").val();
       time = new Date(timeIn);
-      var hours = time.getUTCHours();
+      var hours = time.getUTCHours(); //Get time in hours  to be visualised
        if(hours == 5){
         hourCounterArray[1][1] += 1;
       }
@@ -418,17 +358,18 @@ function CalcAgeRangeCount(){
     ["40 to 50", 0],
     ["50 to 65", 0]
   ];
-  var ageRef = dbRef.orderByChild("dateOfBirth").on("value", function (data) {
+  var ageRef = dbRef.orderByChild("dateOfBirth").on("value", function (data) { //Query firebase on dateOfBirth node
 
     data.forEach(function (data) {
       var dobIn = data.child("dateOfBirth").val();
-      var result = dobIn.split("/");
-      dob = result[1] + '-' + result[0] + '-' + result[2];
+      var result = dobIn.split("/"); //split dobIn into an array
+      dob = result[1] + '-' + result[0] + '-' + result[2]; //re-order elements of array
       
+      //compare todays date against date of birth
       var today = new Date();
       var birthDate = new Date(dob);
       var age = today.getFullYear() - birthDate.getFullYear();
-    
+     //if Statements to add certain ages to each age group in array
        if(age <= 10){
         counterArray[1][1] +=1;
       }
@@ -448,11 +389,11 @@ function CalcAgeRangeCount(){
         counterArray[6][1] +=1;
       }
     });
-      drawChart4(counterArray);
+      drawChart4(counterArray); //calling visualization method
   });
  
 }
-CalcAgeRangeCount();
+CalcAgeRangeCount();//Call method to calc age range to prep for visualisation
 
 var drawChart4 = function(withData) { //Most Common Times 
         
@@ -467,20 +408,4 @@ var drawChart4 = function(withData) { //Most Common Times
 
   var chart = new google.visualization.PieChart(document.getElementById('gridItem2'));
   chart.draw(data, options);
-}
-
-
-function validate(){
-var email = document.getElementById("txtEmail").value;
-var password = document.getElementById("txtPassword").value;
-var dashToHide = document.getElementById("toHide");
-if ( email == "admin@gmail.com" && password == "admin696"){
-alert ("Login successfully");
-dashToHide.style.display = "block";
-return false;
-}
-else{
-  dashToHide.style.display = "none";
-}
-
 }
