@@ -31,7 +31,7 @@ promise.catch(e => console.log(e.message));
 firebase.auth().onAuthStateChanged(firebaseUser => 
   {
     if(firebaseUser){
-      console.log(firebaseUser);
+     window.alert("HEYYYYYYY");
     }
     else{
       console.log("user not logged in");
