@@ -1,596 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Gavin O'Keeffe</title>
+  <title>Fare Evasion Analyzer</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="stylesheet" href="C:\Users\gavin_000\Documents\4thYearProj2018\public1\stylesheet.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-fixed-top">
+
+<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span> 
+        <span class="icon-bar"></span>                        
       </button>
+      <a class="navbar-brand" href="#">Fare Evasion Analyzer</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-		<li><a href="#">Home</a></li>
-		<li><a href="#aboutme">About Me</a></li>
-		<li><a href="#education">Education</a></li>
-		<li><a href="#skills">Skills</a></li>
-		<li><a href="#project">Projects</a></li>
-		<li><a href="#work">Work Experience</a></li>
-	   <li><a href="#hobbies">Hobbies and Interests</a></li>
-	   <li><a href="#contactme">Contact Me</a></li>
+        <li class="active"><a href="C:\Users\gavin_000\Documents\4thYearProj2018\public1\index.html">Home</a></li>
+        <li><a href="C:\Users\gavin_000\Documents\4thYearProj2018\public1\AnalyticsDash.html">Analytics</a></li>
       </ul>
-		<div class="search-container">
-		<form action="/action_page.php">
-		<input type="text" placeholder="Search.." name="search">
-		 <button type="button" class="btn btn-info">
-    <span class="glyphicon glyphicon-search"></span>
-  </button>
-		</form>
-		</div>
+      <div class="navLogin navbar-nav navbar-right">
+       <input id="txtEmail" type="email" placeholder="Email">
+       <input id="txtPassword" type="password" placeholder="Password">
+       <button id="btnLogin" class="btn btn-action">Log in</button>
+        <button id="btnLogout" class="btn btn-hide">Log out</button>
+      </div>
     </div>
   </div>
 </nav>
-	<div class="container-fluid bg-1">
-		<div class="image">
-		<img src="images\avatar.png" class="img-circle" alt="Avatar">
-		</div>
-		<div class="text">
-		<h3>Gavin O'Keeffe</h3>
-		<p>Fourth year Computing and Software Development student in Institute of Technology Tallaght.</p>
-		<div class="social-media">
-		<a href="#" class="fa fa-facebook"></a>
-		<a href="#" class="fa fa-twitter"></a>
-		<a href="#" class="fa fa-linkedin"></a>
-		<a href="#" class="fa fa-github"></a>
-		</div>
-		<button type="button">Download CV</button>
-		</div>
-	</div>	
-	
-	<div id="aboutme" class="container-fluid bg-7 col-sm-12" style="padding-top: 50px;">	
-	<h2>&nbsp; About me</h2>
-	<div class="aboutimage col-md-2 col-sm-8">
-		<img src="me2.JPG" class="aboutimage">
-	</div>
-	<div class="abouttext col-md-10 col-sm-12">
-	<p>I am a current 4th year student of Institute of Technology Tallaght Dublin, 
-	studying a 	Bsc.(Honours) Degree in Computing with Software Development. I am 20 years 
-	of age. I have 2 years experience in customer service, spreading across two sectors,
-	the sports and leisure sector and retail. I am currently a part-time lifeguard for ALSAA.
-	Upon graduating from ITTD, I would like to find a company within the IT industry to work for.
-	I have many different interests within the industry and I am open to new challenges in regards
-	to positions that might be available to me. From a young age IT has always been a passion 
-	of mine, as I was always interested in how things worked and also building things, I loved 
-	the sense of achievement when you create or build something (you can tell my house was filled
-	with lego). This passion was taken with me through school and now it follows me 
-	through college. My former colleagues, current colleagues and fellow students would say that
-	I am a hard-worker, who enjoys being challenged and loves to collaborate with others but 
-	also can work individually. In my own opinion, I am very courteous and helpful, I will
-	give a helping hand when someone needs it.</p>
-	<div class="contactMe">
-	<button type="button" data-toggle="modal" data-target="#myModal">Contact me</button>
-	 <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Contact Me</h4>
-        </div>
-        <div class="modal-body">
-			<label for="firstname">First Name</label>
-			<input type="text" id="fname" name="firstname" placeholder="Your name..">
-
-			<label for="lastname">Last Name</label>
-			<input type="text" id="lname" name="lastname" placeholder="Your last name..">
-
-			<label for="subject">Say Hi!</label>
-			<textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-
-			<input type="submit" value="Submit">
-		</form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-12 text-left"> 
+      <h2>Welcome To The Offender Analysis Website</h2>
+      <p>This website allows staff to perform analytics on our offender statistics and help us to see the key places we need to send our ticket 
+    inspectors, in order to help us combat fare evasion.</p>
+    <ul>
+        <li>X00119182</li>
+        <li>Purpose: 4th Year Project</li>
+        <li>Degree Sought: Bachelor of Science Honours Degree in Computing.</li>
+      </ul>
+      <hr>
     </div>
   </div>
-  </div>
- </div>
 </div>
-<script>
-$(document).ready(function(){
-    $("#myBtn").click(function(){
-        $("#myModal").modal();
-    });
-});
-</script>
-<!-- Education -->
-	<div id="education" class="container-fluid bg-2 col-sm-12" style="padding-top: 50px;">
-		<h2>Education</h2>
-			<div class="panel-group col-md-6" id="accordion">
-			<div class="panel1 panel-default">
-				<div class="panel-heading">
-				  <h4 class="panel-title">
-					<a data-toggle="collapse" data-parent="#accordion" href="#College">
-					Institute of Technology Tallaght</a>
-				  </h4>
-				</div>
-				<div id="College" class="panel-collapse collapse">
-					<div class="panel-body">
-						<p><img src="images\ittd.jpg" style="height:150px;width:150px;margin-right:15px;">
-						<br></br>
-						I have been studying Computing and Software Development in IT Tallaght for the last 4 years and expect to graduate in 2018. 
-						In the course I have learned many different skills such as programming in languages such as Java,
-						HTML, CSS, C#, SQL and more outlined in the skills section. I have also completed s number of different 
-						projects both team based and individual. Outside of class I have been involved in
-						two societies, ITTfm, who are the college radio society and ITT Table Tennis club. For the radio society, I 
-						was elected "Digital Content Manager" from May 2016 to May 2017. Below is a list of my grades throughout the years
-						per module.</p>
-						<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="#year4">Year 4</a></li>
-						<li><a data-toggle="tab" href="#year3">Year 3</a></li>
-						<li><a data-toggle="tab" href="#year2">Year 2</a></li>
-						<li><a data-toggle="tab" href="#year1">Year 1</a></li>
-						</ul>
-						<div class="tab-content">
-							<div id="year4" class="tab-pane fade in active">
-							  <table class="table">
-								<thead>
-								  <tr>
-									<th>Module</th>
-									<th>Grade</th>
-								  </tr>
-								</thead>
-								<tbody>
-								  <tr>
-									<td>Interactive Media Design and Visualisation</td>
-									<td>TBD</td>
-								  </tr>      
-								  <tr>
-									<td>Social Media Analysis</td>
-									<td>TBD</td>
-								  </tr>
-								   <tr>
-									<td>Enterprise Performance Architecture</td>
-									<td>TBD</td>
-								  </tr>
-								   <tr>
-									<td>Project</td>
-									<td>TBD</td>
-								  </tr>
-								  <tr>
-									<td>Information Management</td>
-									<td>TBD</td>
-								  </tr>
-								  <tr>
-									<td>Enterprise Application Development 1</td>
-									<td>TBD</td>
-								  </tr>
-								</tbody>
-							  </table>
-							</div>
-							<div id="year3" class="tab-pane fade">
-							  <table class="table">
-								<thead>
-								  <tr>
-									<th>Module</th>
-									<th>Grade</th>
-								  </tr>
-								</thead>
-								<tbody>
-								  <tr class="warning">
-									<td>Web Application Development</td>
-									<td>C</td>
-								  </tr>      
-								  <tr class="warning">
-									<td>Cloud Services and Distributed Computing</td>
-									<td>C+</td>
-								  </tr>
-								   <tr class="warning">
-									<td>Advanced Databases</td>
-									<td>B-</td>
-								  </tr>
-								   <tr class="warning">
-									<td>Innovation and Entrepreneurship</td>
-									<td>B-</td>
-								  </tr>
-								  <tr class="warning">
-									<td>Algorithms and Data Structures 1</td>
-									<td>C</td>
-								  </tr>
-								  <tr class="success">
-									<td>Operating Systems</td>
-									<td>B</td>
-								  </tr>
-								  <tr class="success">
-									<td>Logic and Problem Solving</td>
-									<td>B</td>
-								  </tr>      
-								  <tr class="warning">
-									<td>Network Management</td>
-									<td>B-</td>
-								  </tr>
-								   <tr class="warning">
-									<td>Object Oriented Analysis and Design 2</td>
-									<td>C</td>
-								  </tr>
-								   <tr class="warning">
-									<td>Algorithms and Data Structures 2</td>
-									<td>C</td>
-								  </tr>
-								  <tr class="danger">
-									<td>Project</td>
-									<td>D</td>
-								  </tr>
-								</tbody>
-							  </table>
-							</div>
-							<div id="year2" class="tab-pane fade">
-								<table class="table">
-								<thead>
-								  <tr>
-									<th>Module</th>
-									<th>Grade</th>
-								  </tr>
-								</thead>
-								<tbody>
-								  <tr class="success">
-									<td>Web Design and Development</td>
-									<td>B</td>
-								  </tr>      
-								  <tr class="success">
-									<td>Database Design and Programming</td>
-									<td>B</td>
-								  </tr>
-								   <tr class="success">
-									<td>Networking</td>
-									<td>B</td>
-								  </tr>
-								   <tr class="success">
-									<td>Software Quality Assurance and Testing</td>
-									<td>B</td>
-								  </tr>
-								  <tr class="success">
-									<td>Discrete Maths 2</td>
-									<td>B</td>
-								  </tr>
-								  <tr class="success">
-									<td>Software Development 3</td>
-									<td>B</td>
-								  </tr>
-								  <tr class="warning">
-									<td>Information Security</td>
-									<td>C</td>
-								  </tr>      
-								  <tr class="success">
-									<td>Object Oriented Analysis and Design</td>
-									<td>B</td>
-								  </tr>
-								   <tr class="warning">
-									<td>Networking 2</td>
-									<td>B-</td>
-								  </tr>
-								   <tr class="warning">
-									<td>Management Science</td>
-									<td>B-</td>
-								  </tr>
-								  <tr class="success">
-									<td>Project</td>
-									<td>A</td>
-								  </tr>
-								  <tr class="warning">
-									<td>Software Development 4</td>
-									<td>C</td>
-								  </tr>
-								 </tbody>
-							  </table>
-							</div>
-							<div id="year1" class="tab-pane fade">
-								<table class="table">
-								<thead>
-								  <tr>
-									<th>Module</th>
-									<th>Grade</th>
-								  </tr>
-								</thead>
-								<tbody>
-								  <tr class="success">
-									<td>Fundamentals of Interface and Web</td>
-									<td>A</td>
-								  </tr>      
-								  <tr class="warning">
-									<td>Software Development 1</td>
-									<td>B-</td>
-								  </tr>
-								   <tr class="success">
-									<td>Computer Architecture</td>
-									<td>B</td>
-								  </tr>
-								   <tr class="success">
-									<td>Business and Information Systems</td>
-									<td>B+</td>
-								  </tr>
-								  <tr class="warning">
-									<td>Discrete Maths 1</td>
-									<td>B-</td>
-								  </tr>
-								  <tr class="success">
-									<td>Learning to Learn ar Third Level</td>
-									<td>B+</td>
-								  </tr>
-								  <tr class="success">
-									<td>Software Development 2</td>
-									<td>A</td>
-								  </tr>      
-								  <tr class="success">
-									<td>Object Oriented System Analysis</td>
-									<td>B+</td>
-								  </tr>
-								   <tr class="success">
-									<td>Statistics</td>
-									<td>B</td>
-								  </tr>
-								   <tr class="warning">
-									<td>Operating Systems</td>
-									<td>C+</td>
-								  </tr>
-								  <tr class="warning">
-									<td>Social Media Communications</td>
-									<td>B-</td>
-								  </tr>
-								  <tr class="success">
-									<td>Database Fundamentals</td>
-									<td>A</td>
-								  </tr>
-								</tbody>
-							  </table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			  <div class="panel2 panel-default">
-				<div class="panel-heading">
-				
-				  <h4 class="panel-title">
-					<a data-toggle="collapse" data-parent="#accordion" href="#school">Colaiste 	Choilm C.B.S</a>
-				  </h4>
-				</div>
-				<div id="school" class="panel-collapse collapse">
-				  <div class="panel-body">
-				  <p><img src="images\cbs.jpg" style="height:100px;width:100px;margin-right:15px;">
-				  In Colaiste Choilm, I completed my Leaving Certificate in 2014, achieving 365 points overall.
-				  For the five years I was at the school, I was heavily involved in some of the school teams, those include hurling, gaelic football
-				  and rugby. </p>
-				 
-				  <p>Below are my Leaving Certificate results:</p>
-				  
-				  
-				  <table class="table">
-								<thead>
-								  <tr>
-									<th>Subject</th>
-									<th>Grade</th>
-								  </tr>
-								</thead>
-								<tbody>
-								  <tr>
-									<td>Maths - Ordinary Level</td>
-									<td>A1</td>
-								  </tr>      
-								   <tr>
-									<td>Irish - Higher Level</td>
-									<td>C2</td>
-								  </tr>
-								   <tr>
-									<td>English - Higher Level</td>
-									<td>C1</td>
-								  </tr>
-								   <tr>
-									<td>Design Communication Graphics</td>
-									<td>C1</td>
-								  </tr>
-								  <tr>
-									<td>Business Studies</td>
-									<td>C1</td>
-								  </tr>
-								  <tr>
-									<td>Biology</td>
-									<td>D1</td>
-								  </tr>
-								   <tr>
-									<td>French</td>
-									<td>C2</td>
-								  </tr>
-								</tbody>
-							</table>
-								</div>
-				  
-				</div>
-			  </div>
-		</div>
-	</div>
-	<!-- Projects -->
-	<div id="project" class="container-fluid bg-4" style="padding-top: 50px;">
-	<h2>Projects</h2>
-	<button class="accordion">Fare Evasion Detection for Public Transport</button>
-		<div class="panel">
-		<p>This app is being built as an Android application written in Java. The idea is for public transport inspectors to be able to detect when someone has not paid thier fare.
-		The app itself will record offenders details, take a front-facing picture of the offender and check for a match in a backend database. It will use facial recognition to
-		determine if the user is in the database or not or if they are in it but not with the same name or address. This will help the company to target offenders better.
-		It will calculate the offenders fine based on the number of offences they have made prior to this one. It will also draw up analysis based on the data collected using R
-		programming.</p>
-		</div>
-
-		<button class="accordion">City Library System</button>
-		<div class="panel">
-		<div class="image2">
-		<img src="images/library3.JPG">
-		</div>
-		<p>The system designed is for a local council or private library. The idea was to come up with a more user friendly way of dealing with day to day transactions
-		of a library through self-service library loan system. The idea would be that the user would log on using thier username and password, and get access to books they
-		wish to rent. Books would be loaned out and using an algorithm created by my team and I, would calculate the loan period based on the books popularity. It would also 
-		issue fines for late returns and allow for credit card payments online thus reducing the need f.or humsn interaction with a librarian.</p>
-		</div>
-
-		<button class="accordion">Tableau Project - Visualisation of Titanic Data</button>
-		<div class="panel">
-		<p>The Tableau project was baes around the idea of visualising data in an informative way so that any user can read it and understand ehat the data 
-		is trying to tell. The task was to filter, mine and clean an excel spreadsheet of data and create calculated fields, etc, for visualisation and show these
-		different visualisations using a dashboard. Below is an extract from my project which I am proud of as it recieved a grade of B.</p>
-		<div class='tableauPlaceholder' id='viz1512856610744' style='position: relative'><noscript><a href='#'><img alt='Survival On The Titanic ' 
-		src=				'https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;FH&#47;FH5JBCMYW&#47;1_rss.png' style='border: none' /></a></noscript>
-		<object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> 
-		<param name='path' value='shared&#47;FH5JBCMYW' /> <param name='toolbar' value='yes' /><param name='static_image'
-		value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;FH&#47;FH5JBCMYW&#47;1.png' /> <param name='animate_transition' value='yes' />
-		<param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' 
-		value='yes' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    
-		var divElement = document.getElementById('viz1512856610744');                    var vizElement = divElement.getElementsByTagName('object')[0];    
-		vizElement.style.width='1000px';vizElement.style.height='427px';                    var scriptElement = document.createElement('script');  
-		scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
-		</div>
-	</div>
-		<script>
-		var acc = document.getElementsByClassName("accordion");
-		var i;
-
-		for (i = 0; i < acc.length; i++) {
-			acc[i].onclick = function(){
-				this.classList.toggle("active");
-				var panel = this.nextElementSibling;
-				if (panel.style.display === "block") {
-					panel.style.display = "none";
-				} else {
-					panel.style.display = "block";
-				}
-			}
-		}
-		</script>
-	<!-- Skills -->
-	<div id="skills" class="container-fluid bg-3 col-sm-12" style="padding-top: 50px;">
-	<h2>Skills</h2>
-<div class='tableauPlaceholder col-sm-12' id='viz1512835748955' style='position: relative; width: 100%; margin-bottom: 2em;'><noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sk&#47;Skills_33&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Skills_33&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sk&#47;Skills_33&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1512835748955');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height='427px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>	
-	</div>
-	<div id="work" class="container-fluid bg-5" style="padding-top: 50px;">
-	<h2>Work Experience</h2>
-	<div class="row">
-		<div class="col col-md-4 col-sm-12">
-			<h4>O'Ciobhains Supervalu</h4>
-			<h5>June 2015-August 2016</h5>
-			<h5>Sales Assistant</h5>
-			<div class="summary">
-			<img src="images\SuperValu_Logo.jpg" class="img-rounded" style="width:100%;">
-			<a href="#supervalu" class="btn btn-info" data-toggle="collapse">View Details</a>
-			  <div id="supervalu" class="collapse">
-				<p>Daily jobs included merchandising, waste management while on fruit and vegetable department, 
-				customer service, interaction and promotions. While collaborating with colleagues and taking instruction from superiors.</p>
-			  </div>
-			</div>
-		</div>
-		<div class="col col-md-4 col-sm-12">
-			<h4>ALSAA Sports Club</h4>
-			<h5>August 2016-Present</h5>
-			<h5>Pool Attendant</h5>
-			<div class="summary">
-				<img src="images\alsaa.gif" style="width:100%; height: 185px;">
-				<a href="#alsaa" class="btn btn-info" data-toggle=	"collapse">View Details</a>
-				<div id="alsaa" class="collapse">
-				<p>Responsibilities include lifeguarding, chlorine testing and monitoring, cleaning, 
-				providing a safe environment for our customers, customer service, receptionist duties, 
-				closing and opening facility each day.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
-	<div id="hobbies" class="container-fluid bg-6" style="padding-top:50px;">
-	<h2>Hobbies and Interests</h2>
-	<div class="row1">
-		<div class="column col-md-3 col-sm-12">
-			<img src="images\Delphin.jpg" class="img-rounded">
-			<h4>Swimming</h4>
-			<p>I am a member of Delphin Lifesaving Club, I have been involved in this club for six years and have represented the club in the
-			RLSS Leinster Speed Championships. I have also become part of the teaching staff for the last 2 years within the club, teaching 
-			children and teenagers the key elements of swimming and lifesaving.</p>
-		</div>
-		
-		<div class="column col-md-3 col-sm-12">
-			<img src="images\finians.png">
-			<h4>GAA</h4>
-			<p>Keen fan of GAA and proud supporter of Dublin GAA. Played for St.Finians from Nursery's to Minor in both hurling and football. 
-			Enjoyed many league and championshipsuccesses with the club including being awarded "Most Improved player in 2009".</p>
-		</div> 
-		
-		<div class="column col-md-3 col-sm-12">
-		<img src="images\ittfm.png"  class="img-rounded">
-		<h4>Radio</h4>
-		<p>I am part of the IT Tallaght Radio Society - ITTfm. I create, present and produce shows throughout the year with the help of other societ members.
-		In May 2016 I was elected Digital Content Manager for the society and was in that role until May 2017</p>
-		</div>
-		
-		<div class="column col-md-3 col-sm-12">
-		<img src="images\guitar.jpg"  class="img-rounded">
-		<h4>Music</h4>
-		<p>Currently learning to play acoustic guitar.</p>
-		</div>
-	</div>
-	</div>
-	<div id="contactme" class="container-fluid bg-8" style="padding-top: 50px;">
-		<h2>Contact Me</h2>
-		<div class="form" class="col-md-6 col-sm-12">
-				 <form action="/action_page.php">
-
-			<label for="fname">First Name</label>
-			<input type="text" id="fname" name="firstname" placeholder="Your name..">
-
-			<label for="lname">Last Name</label>
-			<input type="text" id="lname" name="lastname" placeholder="Your last name..">
-
-			<label for="email">Email</label>
-			<input type="text" id="email" name="email" placeholder="Your email..">
-		
-			<label for="subject">Subject</label>
-			<textarea id="subject" name="subject" placeholder="Write something.." style="height:160px"></textarea>
-
-			<input type="submit" value="Submit">
-
-		  </form>
-		</div>
-		<div class="map col-md-6 col-sm-12" style="width:200px;height:200px">
-		<script>
-			function myMap() {
-				var mapOptions = {
-					center: new google.maps.LatLng(53.2911, 6.3630),
-					zoom: 10,
-					mapTypeId: google.maps.MapTypeId.HYBRID
-				}
-			var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-			}
-		</script>
-		</div>
-	</div>
-	<div class="footer">
-	<h5>Click here for overview of the website features</h5>
-	<form method="get" action="components.html">
-    <button type="submit">Components page</button>
-	</form>
-	</div>
 </body>
+
+
+
+
+
+
+
+<footer class="footer" style="position:absolute">
+  <div id="foot">
+      <p>Created By: X00119182</p>
+  </div>
+</footer>
 </html>
