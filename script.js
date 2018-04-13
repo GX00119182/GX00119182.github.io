@@ -12,18 +12,18 @@ auth.signInWithEmailAndPassword(email, pass);
 auth.onAuthStateChanged(firebaseUser => {});
 */
 
-const txtEmail = document.getElementById("txtEmail");
-const txtPassword = document.getElementById("txtPassword");
-const btnLogin = document.getElementById("btnLogin");
-const btnLogout = document.getElementById("btnLogout");
+var txtEmail = document.getElementById("txtEmail");
+var txtPassword = document.getElementById("txtPassword");
+var btnLogin = document.getElementById("btnLogin");
+var btnLogout = document.getElementById("btnLogout");
 
 btnLogin.addEventListener("click", e => {
-const email = txtEmail.value;
-const password = txtPassword.value;
-const auth = firebase.auth();
+var email = txtEmail.value;
+var password = txtPassword.value;
+var auth = firebase.auth();
 
 //signin
-const promise = auth.signInWithEmailAndPassword(email, password);
+var promise = auth.signInWithEmailAndPassword(email, password);
 promise.catch(e => console.log(e.message));
 
 });
