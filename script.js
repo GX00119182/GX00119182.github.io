@@ -31,10 +31,10 @@ promise.catch(e => console.log(e.message));
 firebase.auth().onAuthStateChanged(firebaseUser => 
   {
     if(firebaseUser){
-      window.alert(firebaseUser);
+      console.log(firebaseUser);
     }
     else{
-      window.alert("user not logged in");
+      console.log("user not logged in");
     }
 });
 
